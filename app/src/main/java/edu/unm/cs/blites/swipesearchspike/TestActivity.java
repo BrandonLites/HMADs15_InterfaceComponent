@@ -9,12 +9,10 @@ import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.widget.Toast;
 
 
 public class TestActivity extends ActionBarActivity implements GestureDetector.OnGestureListener {
     private GestureDetector gDetector;
-    float screenWidth;
     float screenHeight;
     float touchThreshold;
 
@@ -28,7 +26,6 @@ public class TestActivity extends ActionBarActivity implements GestureDetector.O
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        screenWidth = (float) size.x;
         screenHeight = (float)size.y;
 
         touchThreshold = screenHeight - (screenHeight / 50);
