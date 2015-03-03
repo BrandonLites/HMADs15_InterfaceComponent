@@ -10,8 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 
+public class MainActivity extends ActionBarActivity implements GestureDetector.OnGestureListener {
 
-public class TestActivity extends ActionBarActivity implements GestureDetector.OnGestureListener {
     private GestureDetector gDetector;
     float screenHeight;
     float touchThreshold;
@@ -21,13 +21,13 @@ public class TestActivity extends ActionBarActivity implements GestureDetector.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
+        // detect motion gestures
         gDetector = new GestureDetector(this, this);
 
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         screenHeight = (float)size.y;
-
         touchThreshold = screenHeight - (screenHeight / 50);
     }
 
@@ -49,38 +49,12 @@ public class TestActivity extends ActionBarActivity implements GestureDetector.O
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent e) {
         return gDetector.onTouchEvent(e);
-    }
-
-    @Override
-    public boolean onDown(MotionEvent e) {
-        return true;
-    }
-
-    @Override
-    public void onShowPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent e) {
-
     }
 
     @Override
@@ -94,4 +68,18 @@ public class TestActivity extends ActionBarActivity implements GestureDetector.O
         }
         return true;
     }
+
+    /****************************************************************************
+     * Unused Overrides
+     ****************************************************************************/
+    @Override
+    public boolean onDown(MotionEvent e) {return true;}
+    @Override
+    public void onShowPress(MotionEvent e) {}
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {return false;}
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float dX, float dY) {return false;}
+    @Override
+    public void onLongPress(MotionEvent e) {}
 }
